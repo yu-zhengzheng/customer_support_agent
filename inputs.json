@@ -1,0 +1,18 @@
+[
+  {
+    "case_id": "C001",
+    "user_query": "你们平台的计费模式是怎样的？",
+    "api_status": "200 OK",
+    "api_response_time": "120ms",
+    "monitor_log": []
+  },
+  {
+    "case_id": "C002",
+    "user_query": "刚才模型是不是挂了？怎么一直没反应？",
+    "api_status": "500 Internal Server Error",
+    "api_response_time": "Timeout",
+    "monitor_log": [
+        {"timestamp": "10:00:01", "status": "Error", "msg": "Connection Refused"}
+    ]
+  }
+]

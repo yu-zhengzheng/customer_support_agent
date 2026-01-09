@@ -12,7 +12,34 @@
     "api_status": "500 Internal Server Error",
     "api_response_time": "Timeout",
     "monitor_log": [
-        {"timestamp": "10:00:01", "status": "Error", "msg": "Connection Refused"}
+      {"timestamp": "10:00:01", "status": "Error", "msg": "Connection Refused"}
+    ]
+  },
+  {
+    "case_id": "C003",
+    "user_query": "今天系统稳定吗？",
+    "api_status": "200 OK",
+    "api_response_time": "150ms",
+    "monitor_log": [
+      {"timestamp": "09:30:15", "status": "Error", "msg": "Timeout"},
+      {"timestamp": "09:35:20", "status": "OK", "msg": "Recovered"}
+    ]
+  },
+  {
+    "case_id": "C004",
+    "user_query": "API接口怎么调用？",
+    "api_status": "200 OK",
+    "api_response_time": "95ms",
+    "monitor_log": []
+  },
+  {
+    "case_id": "C005",
+    "user_query": "为什么系统这么慢？",
+    "api_status": "503 Service Unavailable",
+    "api_response_time": "Timeout",
+    "monitor_log": [
+      {"timestamp": "14:20:10", "status": "Error", "msg": "High CPU Usage"},
+      {"timestamp": "14:21:15", "status": "Error", "msg": "Memory Leak Detected"}
     ]
   }
 ]

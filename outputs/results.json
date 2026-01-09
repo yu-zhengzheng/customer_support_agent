@@ -1,0 +1,33 @@
+[
+  {
+    "case_id": "C001",
+    "reply": "根据平台文档，我们提供按量付费和包月订阅两种模式。按量付费的价格为每千次调用 0.1 元，包月订阅为 299 元/月不限量调用。",
+    "action_triggered": null
+  },
+  {
+    "case_id": "C002",
+    "reply": "非常抱歉，检测到模型 API 在 10:00:01 出现了短暂的 Connection Refused。目前系统正在自动修复中，请您稍后再试。",
+    "action_triggered": {
+      "feishu_webhook": "Sent success",
+      "apifox_doc_id": "DOC_20260107_190442_ERROR"
+    }
+  },
+  {
+    "case_id": "C003",
+    "reply": "根据监控数据，系统在 09:35:20 曾出现 Recovered 的问题，目前已恢复正常。",
+    "action_triggered": null
+  },
+  {
+    "case_id": "C004",
+    "reply": "平台提供RESTful API接口，支持多种编程语言调用，详细文档请查看开发者中心。",
+    "action_triggered": null
+  },
+  {
+    "case_id": "C005",
+    "reply": "非常抱歉，检测到模型 API 在 14:21:15 出现了短暂的 Memory Leak Detected。目前系统正在自动修复中，请您稍后再试。",
+    "action_triggered": {
+      "feishu_webhook": "Sent success",
+      "apifox_doc_id": "DOC_20260107_190442_ERROR"
+    }
+  }
+]

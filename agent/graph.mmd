@@ -5,14 +5,14 @@ config:
 ---
 graph TD;
 	__start__([<p>__start__</p>]):::first
-	retrieve(retrieve)
+	monitor(monitor)
 	knowledge(knowledge)
 	server(server)
 	__end__([<p>__end__</p>]):::last
-	__start__ --> retrieve;
-	retrieve -. &nbsp;¼à¿Ø&nbsp; .-> __end__;
-	retrieve -. &nbsp;ÒµÎñ&nbsp; .-> knowledge;
-	retrieve -. &nbsp;×´Ì¬&nbsp; .-> server;
+	__start__ --> monitor;
+	monitor -. &nbsp;¼à¿Ø&nbsp; .-> __end__;
+	monitor -. &nbsp;ÒµÎñ&nbsp; .-> knowledge;
+	monitor -. &nbsp;×´Ì¬&nbsp; .-> server;
 	knowledge --> __end__;
 	server --> __end__;
 	%% classDef default fill:#f2f0ff,line-height:1.2

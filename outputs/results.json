@@ -1,33 +1,41 @@
 [
   {
     "case_id": "C001",
-    "reply": "根据平台文档，我们提供按量付费和包月订阅两种模式。按量付费的价格为每千次调用 0.1 元，包月订阅为 299 元/月不限量调用。",
-    "action_triggered": null
+    "reply": "我们平台有两种计费模式：一种是按量付费，每千次调用0.1元；另一种是包月套餐，299元/月，不限使用次数。你可以根据自己的使用需求选择合适的方案～",
+    "action_triggered": {}
   },
   {
     "case_id": "C002",
-    "reply": "非常抱歉，检测到模型 API 在 10:00:01 出现了短暂的 Connection Refused。目前系统正在自动修复中，请您稍后再试。",
+    "reply": "您好，刚才系统确实出现了异常。根据监控日志，在 10:00:01 时发生了“Connection Refused”错误，导致服务暂时不可用，这可能是您遇到无响应的原因。目前我们已收到告警并正在排查处理。给您带来不便，敬请谅解。",
     "action_triggered": {
-      "feishu_webhook": "Sent success",
-      "apifox_doc_id": "DOC_20260107_190442_ERROR"
+      "feishu_webhook": "success",
+      "apifox_doc_id": "[故障记录] 2023-10-01 10:00:01"
     }
   },
   {
     "case_id": "C003",
-    "reply": "根据监控数据，系统在 09:35:20 曾出现 Recovered 的问题，目前已恢复正常。",
-    "action_triggered": null
+    "reply": "今天系统整体基本稳定，但在 09:30:15 出现了一次超时错误，已于 09:35:20 恢复正常。目前服务运行良好。",
+    "action_triggered": {}
   },
   {
     "case_id": "C004",
-    "reply": "平台提供RESTful API接口，支持多种编程语言调用，详细文档请查看开发者中心。",
-    "action_triggered": null
+    "reply": "我们的 API 接口是基于 RESTful 设计的，调用起来很方便。你可以直接通过 HTTP 请求来使用，也支持多种编程语言的 SDK，比如 Python、Java、JavaScript 等，能帮你更快速地集成。如果你有具体的开发语言或场景，我可以给你更详细的调用示例！",
+    "action_triggered": {}
   },
   {
     "case_id": "C005",
-    "reply": "非常抱歉，检测到模型 API 在 14:21:15 出现了短暂的 Memory Leak Detected。目前系统正在自动修复中，请您稍后再试。",
+    "reply": "系统当前运行缓慢，主要是由于近期监控日志中检测到两个关键问题：\n\n1. **高 CPU 使用率**（14:20:10）：系统资源被大量占用，可能导致响应变慢。  \n2. **内存泄漏**（14:21:15）：程序未正确释放已分配的内存，随时间推移会耗尽可用内存，进一步拖慢系统甚至引发服务中断。\n\n我们的技术团队已收到告警，正在紧急排查和优化相关服务。建议您稍后再试，或避开高峰时段操作。如有持续异常，欢迎随时反馈。",
     "action_triggered": {
-      "feishu_webhook": "Sent success",
-      "apifox_doc_id": "DOC_20260107_190442_ERROR"
+      "feishu_webhook": "success",
+      "apifox_doc_id": "[故障记录] 2023-10-01 14:20:10"
+    }
+  },
+  {
+    "case_id": "C006",
+    "reply": null,
+    "action_triggered": {
+      "feishu_webhook": "success",
+      "apifox_doc_id": "[故障记录] 2023-10-05 14:23:45"
     }
   }
 ]

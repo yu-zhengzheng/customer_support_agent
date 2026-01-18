@@ -1,33 +1,59 @@
 [
   {
     "case_id": "C001",
-    "reply": "根据平台文档，我们提供按量付费和包月订阅两种模式。按量付费的价格为每千次调用 0.1 元，包月订阅为 299 元/月不限量调用。",
-    "action_triggered": null
+    "reply": "我们平台是按实际使用的 tokens 用量来计费的，在供应商成本的基础上加收10%的平台服务费（含税）。",
+    "action_triggered": {}
   },
   {
     "case_id": "C002",
-    "reply": "非常抱歉，检测到模型 API 在 10:00:01 出现了短暂的 Connection Refused。目前系统正在自动修复中，请您稍后再试。",
+    "reply": "是的，刚才模型服务确实出现了异常。根据监控日志，在 10:00:01 发生了 “Connection Refused” 错误，并伴随 500 Internal Server Error 和超时，说明后端服务当时无法正常响应请求。目前我们已收到告警，技术团队正在紧急排查和恢复。给您带来不便，敬请谅解。",
     "action_triggered": {
-      "feishu_webhook": "Sent success",
-      "apifox_doc_id": "DOC_20260107_190442_ERROR"
+      "feishu_webhook": "success",
+      "apifox_doc_id": "[故障记录] 2023-10-01 10:00:01"
     }
   },
   {
     "case_id": "C003",
-    "reply": "根据监控数据，系统在 09:35:20 曾出现 Recovered 的问题，目前已恢复正常。",
-    "action_triggered": null
+    "reply": "你可以通过访问这个地址来调用 API 接口：https://router.shengsuanyun.com/api/v1。它支持所有模型的统一接入，具体调用方式可以根据你使用的编程语言或工具，发送 HTTP 请求到该地址即可。如果需要更详细的参数或示例，可以告诉我你的使用场景哦！",
+    "action_triggered": {}
   },
   {
     "case_id": "C004",
-    "reply": "平台提供RESTful API接口，支持多种编程语言调用，详细文档请查看开发者中心。",
-    "action_triggered": null
+    "reply": "系统响应缓慢是由于近期出现了高 CPU 使用率和内存泄漏问题，导致部分请求超时。根据监控日志，这些问题在 14:35 左右已恢复。我们正在进一步排查根本原因以防止再次发生。感谢您的耐心！",
+    "action_triggered": {}
   },
   {
     "case_id": "C005",
-    "reply": "非常抱歉，检测到模型 API 在 14:21:15 出现了短暂的 Memory Leak Detected。目前系统正在自动修复中，请您稍后再试。",
+    "reply": "你可以在控制台的API密钥模块点击“创建”，系统会自动生成一个专属密钥供你调用使用。创建密钥本身是免费的，但具体调用API时是否收费，要根据你使用的API服务类型来定。记得妥善保管密钥，避免泄露哦！",
+    "action_triggered": {}
+  },
+  {
+    "case_id": "C006",
+    "reply": "是的，您的请求返回了 429 错误，说明触发了频率限制。根据监控日志中的信息：“RPM threshold exceeded”（每分钟请求数超过阈值），系统已对您的请求进行了限流。\n\n建议您适当降低请求频率，或联系技术支持了解具体的限流策略及是否可申请调整配额。",
     "action_triggered": {
-      "feishu_webhook": "Sent success",
-      "apifox_doc_id": "DOC_20260107_190442_ERROR"
+      "feishu_webhook": "success",
+      "apifox_doc_id": "[故障记录] 2023-10-05 16:45:46"
     }
+  },
+  {
+    "case_id": "C007",
+    "reply": "（例行监控，无用户输入，无回答。）",
+    "action_triggered": {
+      "feishu_webhook": "success",
+      "apifox_doc_id": "[故障记录] 2023-10-05 17:37:28"
+    }
+  },
+  {
+    "case_id": "C008",
+    "reply": "您好，目前我们监测到官网和 API 确实存在异常。根据监控日志，从 18:05 左右开始出现了 **SSL 握手失败** 和 **连接被拒绝** 的错误，同时伴随 **500 Internal Server Error** 和 **超时** 问题，说明服务端当前可能处于不可用状态。\n\n技术团队已收到告警并正在紧急排查处理。建议您暂时不要频繁重试，以免加重系统负担。我们会尽快恢复服务，感谢您的理解与耐心。如有进一步进展，将第一时间通知。",
+    "action_triggered": {
+      "feishu_webhook": "success",
+      "apifox_doc_id": "[故障记录] 2023-10-04 18:05:13"
+    }
+  },
+  {
+    "case_id": "C009",
+    "reply": "你可以在费用中心查看详细的调用记录和扣费明细，包括每次请求使用的模型、token 数量以及对应的扣费金额等信息。",
+    "action_triggered": {}
   }
 ]

@@ -17,29 +17,61 @@
   },
   {
     "case_id": "C003",
-    "user_query": "今天系统稳定吗？",
-    "api_status": "200 OK",
-    "api_response_time": "150ms",
-    "monitor_log": [
-      {"timestamp": "09:30:15", "status": "Error", "msg": "Timeout"},
-      {"timestamp": "09:35:20", "status": "OK", "msg": "Recovered"}
-    ]
-  },
-  {
-    "case_id": "C004",
     "user_query": "API接口怎么调用？",
     "api_status": "200 OK",
     "api_response_time": "95ms",
     "monitor_log": []
   },
   {
-    "case_id": "C005",
+    "case_id": "C004",
     "user_query": "为什么系统这么慢？",
-    "api_status": "503 Service Unavailable",
-    "api_response_time": "Timeout",
+    "api_status": "200 OK",
+    "api_response_time": "150ms",
     "monitor_log": [
       {"timestamp": "14:20:10", "status": "Error", "msg": "High CPU Usage"},
-      {"timestamp": "14:21:15", "status": "Error", "msg": "Memory Leak Detected"}
+      {"timestamp": "14:21:15", "status": "Error", "msg": "Memory Leak Detected"},
+      {"timestamp": "14:30:15", "status": "Error", "msg": "Timeout"},
+      {"timestamp": "14:35:20", "status": "OK", "msg": "Recovered"}
     ]
+  },
+  {
+    "case_id": "C005",
+    "user_query": "API密钥在哪里创建？需要收费吗？",
+    "api_status": "200 OK",
+    "api_response_time": "88ms",
+    "monitor_log": []
+  },
+  {
+    "case_id": "C006",
+    "user_query": "我的请求返回429错误，是不是频率限制了？",
+    "api_status": "429 Too Many Requests",
+    "api_response_time": "45ms",
+    "monitor_log": [
+      {"timestamp": "16:45:05", "status": "Warning", "msg": "RPM threshold exceeded"}
+    ]
+  },
+  {
+    "case_id": "C007",
+    "user_query": "企业用户怎么进行实名认证？需要哪些材料？",
+    "api_status": "200 OK",
+    "api_response_time": "105ms",
+    "monitor_log": []
+  },
+  {
+    "case_id": "C008",
+    "user_query": "官网打不开，API也连不上，是不是全挂了？",
+    "api_status": "500 Internal Server Error",
+    "api_response_time": "Timeout",
+    "monitor_log": [
+      {"timestamp": "18:05:10", "status": "Error", "msg": "Connection Refused"},
+      {"timestamp": "18:05:15", "status": "Error", "msg": "SSL handshake failed"}
+    ]
+  },
+  {
+    "case_id": "C009",
+    "user_query": "在哪里能看到详细的调用记录和扣费明细？",
+    "api_status": "200 OK",
+    "api_response_time": "125ms",
+    "monitor_log": []
   }
 ]

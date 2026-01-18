@@ -28,12 +28,45 @@ HEADERS = {
 }
 
 KNOWLEDGE_BASE = {
-    "计费": "按量付费每千次 0.1 元，包月 299 元不限量。",
-    "价格": "按量付费每千次 0.1 元，包月 299 元不限量。",
-    "费用": "按量付费每千次 0.1 元，包月 299 元不限量。",
-    "功能": "平台支持文本生成、图像识别、语音转换等多种AI能力。",
-    "API": "提供 RESTful 接口，支持多语言 SDK。",
-    "文档": "官方文档中心：https://docs.example.com",
+    "注册": "支持手机号验证码或微信扫码快速注册，未注册用户首次登录自动完成注册。",
+    "登录": "提供手机号验证码、账号名+密码、微信扫码三种登录方式。",
+    "修改密": "在控制台个人中心-个人设置中可修改密码，需验证原密码确保账户安全。",
+    "实名": "个人用户使用支付宝扫码认证，企业用户需联系客服人工处理。",
+    "充值": "支持微信、支付宝扫码支付，企业用户可申请对公汇款。",
+    "余额": "登录后右上角实时显示账户余额，费用中心可查看详细消耗记录。",
+    "密钥": "在控制台API密钥模块点击创建，系统自动生成专属密钥供调用使用。支持编辑密钥名称、查看调用权限、删除重建，需妥善保管避免泄露。",
+    "用记录": "费用中心可查看每次请求的模型、token数、扣费金额等完整调用详情。",
+    "计费": "按实际tokens用量计费，供应商成本基础上加收10%平台费（含税）。",
+    "价格": "各模型价格不同，可在官网模型列表查看每百万输入/输出tokens的明确标价。",
+    "RPM": "每分钟请求数限制，根据账户套餐等级不同，超额返回429错误。",
+    "TPM": "每分钟处理的tokens总数限制，根据账户套餐等级不同，超额返回429错误。",
+    "API": "调用地址https://router.shengsuanyun.com/api/v1，支持所有模型统一接入。",
+    "模型名称": "在请求体model字段中指定模型名称，如'anthropic/claude-sonnet-4'。",
+    "流式": "设置stream=true使用SSE格式返回，提升交互体验并减少等待时间。",
+    "用量": "设置stream_options.include_usage=true，在最后一个响应块返回完整usage信息。",
+    "认证头": "Authorization: Bearer <API_KEY>，必须包含Bearer前缀和有效密钥。",
+    "请求体": "JSON格式，需包含model、messages等必需字段，结构需符合API文档。",
+    "响应": "同步请求返回JSON对象，流式请求返回SSE格式数据块序列。",
+    "超时": "客户端建议设置60-120秒超时，复杂请求可延长至300秒以上。",
+    "错误": "统一返回JSON对象，包含error.type、error.message、error.code等字段。",
+    "400": "请求参数错误，如JSON格式错误、缺少必需参数、参数值类型或范围无效。",
+    "401": "API密钥无效、格式错误、已被禁用或账户认证失败导致权限不足。",
+    "402": "配额超限，通常是账户余额不足或套餐用量额度已用尽。",
+    "403": "权限不足，可能是账户余额不足或API密钥未授予访问该资源的权限。",
+    "429": "速率限制，包括TPM/RPM超限，请求频率或token消耗超过套餐限额。",
+    "500": "服务器内部错误，通常短暂等待数秒后重试即可解决。",
+    "503": "服务不可用，服务器过载或维护中，需等待数分钟并多次重试。",
+    "隐私": "平台不记录敏感内容，保障用户数据安全和商业机密。",
+    "客服": "工作时间人工客服，非工作时间可加入胜算云Router微信群获取支持。",
+    "文档": "docs.router.shengsuanyun.com提供完整API文档和使用指南。",
+    "模型列表": "router.shengsuanyun.com/model可查看所有支持模型的参数和价格。",
+    "代金券": "点击用户头像-兑换赠送额度-输入兑换码完成代金券兑换。",
+    "免费": "暂不提供免费模型，因免费模型普遍限速限流无法满足编程需求。",
+    "新用户": "不定期提供小额试用额度，关注社交媒体获取最新通知。",
+    "接口": "支持Apifox等工具测试，需设置Authorization和Content-Type头。",
+    "SSE": "按行解析，每行以'data: '开头，取其后JSON数据解析。",
+    "usage": "流式响应最后一个chunk包含prompt_tokens、completion_tokens和total_tokens。",
+    "套餐": "在控制台选择更高配额套餐升级，提升RPM/TPM限制。",
 }
 
 
@@ -145,12 +178,10 @@ def send_card(webhook: str, 报错时间: str = "", 错误代码: str = "", 当�
     result = resp.json()
     # print(result)
     return result.get("msg")
-
-
 # print(send_card(WEBHOOK_URL,"00:00:00","404","0ms"))
+
+
 # 胜算云API调用
-
-
 def LLM_invoke(message, tools=None):
     payload = json.dumps({
         "model": MODEL_ID,
@@ -175,8 +206,8 @@ def LLM_invoke(message, tools=None):
     obj = json.loads(res.read().decode('utf-8'))
     elapsed_time = datetime.datetime.now() - start_time
     log(obj)
-    # print("-"*100,f"\nexecuted in {elapsed_time.total_seconds():.4f} seconds")
-    # print("usage:",obj["usage"])
+    print(f"executed in {elapsed_time.total_seconds():.4f} seconds")
+
     try:
         content = obj["choices"][0]
     except:
@@ -221,12 +252,10 @@ class AgentState(BaseModel):
 
 def monitor_node_state(func):
     """打印AgentState的装饰器"""
-
     def inner(*args):
         # print(func.__name__,"entered:",args)
         log(*args)
         return func(*args)
-
     return inner
 
 
@@ -273,7 +302,6 @@ def node_monitor(state: AgentState) -> AgentState:
             {"role": "user", "content": user_msg},
         ]
         judgement = LLM_invoke(messages)["message"]["content"]
-        # print("judgement:", judgement)
 
         if judgement == "业务":
             state.user_intent = "业务"
@@ -330,8 +358,7 @@ def build_graph():
     workflow.add_node("knowledge", node_knowledge)
     workflow.add_node("server", node_server)
 
-    # 条件边：retrieve 之后根据系统状态分支
-    # @print_state_info
+    # 条件边：monitor 之后根据系统状态分支
     def _router(state: AgentState):
         if state.user_intent == "监控":
             return "监控"
@@ -351,8 +378,7 @@ def build_graph():
     workflow.add_edge("server", END)
     workflow.add_edge("knowledge", END)
 
-    # memory = MemorySaver()
-    graph = workflow.compile(checkpointer=False)  # memory) 暂不使用检查点
+    graph = workflow.compile(checkpointer=False)
 
     # 生成模型结构流程图
     mmd_graph = graph.get_graph().draw_mermaid().replace("classDef", "%% classDef")
@@ -374,9 +400,7 @@ class SmartAgent:
 
     def process(self, case: Dict[str, Any]) -> Dict[str, Any]:
         state = AgentState(**case)
-        print("=" * 100, "\ncase:", case,"\n","-" * 100)
-        # thread = {"configurable": {"thread_id": case["case_id"]}}
-        # print("-"*100,"\nstate.model_dump():",state.model_dump())
+        print(f"\n\n{'=' * 100}\ncase:", case,"\n","-" * 100)
         final_state = self.graph.invoke(state.model_dump())  # , config=thread)
         print("agent:", final_state["final_reply"])
         # 组装成旧格式
@@ -396,10 +420,7 @@ except FileNotFoundError:
     print("❌ 未找到 inputs.json!")
 
 # 运行Agent
-print("=" * 100)
-print("智能客服监控 Agent启动")
-print("=" * 100)
-
+print("\n--- 智能客服监控 Agent启动 ---")
 agent = SmartAgent()
 # results = agent.process(inputs[0])
 results = [agent.process(case) for case in inputs]
@@ -408,4 +429,4 @@ os.makedirs("outputs", exist_ok=True)
 with open("../outputs/results.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 
-print("✅ 处理完成！结果已保存到 outputs/results.json")
+print(f"\n\n{'='*100}\n✅ 处理完成！结果已保存到 outputs/results.json")

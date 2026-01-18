@@ -26,12 +26,12 @@
     "case_id": "C004",
     "user_query": "为什么系统这么慢？",
     "api_status": "200 OK",
-    "api_response_time": "150ms",
+    "api_response_time": "18450ms",
     "monitor_log": [
       {"timestamp": "14:20:10", "status": "Error", "msg": "High CPU Usage"},
-      {"timestamp": "14:21:15", "status": "Error", "msg": "Memory Leak Detected"},
+      {"timestamp": "14:21:06", "status": "Error", "msg": "Memory Leak Detected"},
       {"timestamp": "14:30:15", "status": "Error", "msg": "Timeout"},
-      {"timestamp": "14:35:20", "status": "OK", "msg": "Recovered"}
+      {"timestamp": "14:35:59", "status": "OK", "msg": "Recovered"}
     ]
   },
   {
@@ -45,17 +45,19 @@
     "case_id": "C006",
     "user_query": "我的请求返回429错误，是不是频率限制了？",
     "api_status": "429 Too Many Requests",
-    "api_response_time": "45ms",
+    "api_response_time": "57ms",
     "monitor_log": [
-      {"timestamp": "16:45:05", "status": "Warning", "msg": "RPM threshold exceeded"}
+      {"timestamp": "16:45:46", "status": "Warning", "msg": "RPM threshold exceeded"}
     ]
   },
   {
     "case_id": "C007",
     "user_query": "",
-    "api_status": "200 OK",
-    "api_response_time": "105ms",
-    "monitor_log": []
+    "api_status": "500 Internal Server Error",
+    "api_response_time": "Timeout",
+    "monitor_log": [
+      {"timestamp": "17:37:28", "status": "Error", "msg": "Connection Refused"}
+    ]
   },
   {
     "case_id": "C008",
@@ -63,8 +65,8 @@
     "api_status": "500 Internal Server Error",
     "api_response_time": "Timeout",
     "monitor_log": [
-      {"timestamp": "18:05:10", "status": "Error", "msg": "Connection Refused"},
-      {"timestamp": "18:05:15", "status": "Error", "msg": "SSL handshake failed"}
+      {"timestamp": "18:05:13", "status": "Error", "msg": "SSL handshake failed"},
+      {"timestamp": "18:05:14", "status": "Error", "msg": "Connection Refused"}
     ]
   },
   {

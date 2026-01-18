@@ -8,7 +8,7 @@ import json
 import os
 import requests
 
-API_KEY = "MWYJvUu1shEFM-xXBo2SoLQ7cHQKlUUTmQT7bQ-HYlytdOM9m5lCce8DBDRIC8SosUEzRP7xQsfI4qMZlPJu7dVb"
+API_KEY = "Bearer MWYJvUu1shEFM-xXBo2SoLQ7cHQKlUUTmQT7bQ-HYlytdOM9m5lCce8DBDRIC8SosUEzRP7xQsfI4qMZlPJu7dVb"
 MODEL_ID = "ali/qwen3-max"
 WEBHOOK_URL = "https://open.feishu.cn/open-apis/bot/v2/hook/d97235b5-9539-4cd6-965d-c0726a81a5eb"
 
@@ -199,7 +199,7 @@ def LLM_invoke(message, tools=None):
     obj = json.loads(res.read().decode('utf-8'))
     elapsed_time = datetime.datetime.now() - start_time
     log(obj)
-    print(f"executed in {elapsed_time.total_seconds():.4f} seconds")
+    # print(f"executed in {elapsed_time.total_seconds():.4f} seconds")
 
     try:
         content = obj["choices"][0]
@@ -225,7 +225,6 @@ def query(question: str) -> str:
 # Agent构建
 from typing import Dict, List, Optional, Any
 from langgraph.graph import StateGraph, END
-# from langgraph.checkpoint.memory import MemorySaver
 from pydantic import BaseModel
 
 
@@ -302,6 +301,7 @@ def node_monitor(state: AgentState) -> AgentState:
     # 否则就是例行监控
     else:
         state.user_intent = "监控"
+        state.final_reply = "（例行监控，无用户输入，无回答。）"
     return state
 
 
@@ -388,11 +388,11 @@ class SmartAgent:
 
     def process(self, case: Dict[str, Any]) -> Dict[str, Any]:
         state = AgentState(**case)
-        print(f"\n\n{'=' * 100}\ncase:", case,"\n","-" * 100)
+        print(f"\n\n{'=' * 80}\ncase:", case,"\n","-" * 80)
         final_state = self.graph.invoke(state.model_dump())  # , config=thread)
         print("agent:", final_state["final_reply"])
+        print("\n（演示时每个示例间暂停5秒）")
         time.sleep(5)
-        print("（演示时每个示例间暂停5秒）")
         # 组装成旧格式
         return {
             "case_id": final_state["case_id"],
@@ -419,4 +419,4 @@ os.makedirs("outputs", exist_ok=True)
 with open("../outputs/results.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 
-print(f"\n\n{'='*100}\n✅ 处理完成！结果已保存到 outputs/results.json")
+print(f"\n\n{'='*80}\n✅ 处理完成！结果已保存到 outputs/results.json")

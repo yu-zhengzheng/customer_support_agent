@@ -52,7 +52,7 @@
   },
   {
     "case_id": "C007",
-    "user_query": "企业用户怎么进行实名认证？需要哪些材料？",
+    "user_query": "",
     "api_status": "200 OK",
     "api_response_time": "105ms",
     "monitor_log": []

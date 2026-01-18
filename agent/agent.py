@@ -2,20 +2,13 @@
 import pickle
 import csv
 import datetime
+import time
 import http.client
 import json
 import os
 import requests
 
-# with open("../api_key.pkl", "wb") as f:
-#    pickle.dump(("",""),f) 危险
-
-with open("../api_key.pkl", "rb") as f:
-    API_KEY = pickle.load(f)
-
-# print(API_KEY)
-# print(APIFOX_TOKEN)
-
+API_KEY = "MWYJvUu1shEFM-xXBo2SoLQ7cHQKlUUTmQT7bQ-HYlytdOM9m5lCce8DBDRIC8SosUEzRP7xQsfI4qMZlPJu7dVb"
 MODEL_ID = "ali/qwen3-max"
 WEBHOOK_URL = "https://open.feishu.cn/open-apis/bot/v2/hook/d97235b5-9539-4cd6-965d-c0726a81a5eb"
 
@@ -264,11 +257,8 @@ def node_monitor(state: AgentState) -> AgentState:
     """判断是否需要触发报警流程+判断用户意图"""
     if state.api_status != "200 OK":
         sys_msg = (
-            "你是智能客服助手。请基于【监控历史】给出真实、自然、简洁、专业化的回答，而不是瞎编。"
-            "触发报警流程。通过 Webhook 向指定飞书账号/群发送富文本卡片。"
-            "内容需包含：报错时间、错误代码、当前延迟。"
-            "调用 Apifox 开放 API，自动生成一篇新的接口文档或错误日志。"
-            "文档标题格式：[故障记录] YYYY-MM-DD HH:mm:ss。"
+            "你是智能客服助手。请基于【监控历史】通过 Webhook 向指定飞书账号/群发送富文本卡片,内容需包含：报错时间、错误代码、当前延迟。"
+            "然后调用 Apifox 开放 API，自动生成一篇新的接口文档或错误日志。文档标题格式：[故障记录] YYYY-MM-DD HH:mm:ss。"
         )
         user_msg = f"【监控日志】\n{state.api_status} 当前延迟:{state.api_response_time}{state.monitor_log}"
         messages = [
@@ -320,7 +310,7 @@ def node_knowledge(state: AgentState) -> AgentState:
     """大模型回复业务问题"""
     sys_msg = (
         "你是智能客服助手。请根据【用户问题】和【知识库片段】生成一段自然、简洁、口语化的回复。"
-        "如果知识库片段为空，可委婉表示暂未找到信息。"
+        "如果知识库中没有答案，需回答“知识库中未找到相关信息”，严禁产生幻觉。"
     )
     user_msg = f"【用户问题】{state.user_query}\n【知识库片段】{query(state.user_query)}"
     messages = [
@@ -336,8 +326,6 @@ def node_server(state: AgentState) -> AgentState:
     """大模型回复系统系统状态问题"""
     sys_msg = (
         "你是智能客服助手。请基于【用户问题】和【监控历史】给出真实、自然、简洁、专业化的回答，而不是瞎编。"
-        "如果知识库片段为空，可委婉表示暂未找到信息。"
-        "你不需要调用工具。"
     )
     user_msg = f"【用户问题】{state.user_query}\n【监控日志】{state.api_status}{state.api_response_time}{state.monitor_log}"
     messages = [
@@ -403,6 +391,8 @@ class SmartAgent:
         print(f"\n\n{'=' * 100}\ncase:", case,"\n","-" * 100)
         final_state = self.graph.invoke(state.model_dump())  # , config=thread)
         print("agent:", final_state["final_reply"])
+        time.sleep(5)
+        print("（演示时每个示例间暂停5秒）")
         # 组装成旧格式
         return {
             "case_id": final_state["case_id"],
